@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Poll Results - PollApp</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+<h2>Results for Poll:</h2>
+<p><strong th:text="${poll.question}"></strong></p>
+
+<table border="1" cellpadding="5">
+    <thead>
+        <tr>
+            <th>Option</th>
+            <th>Votes</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="option : ${poll.options}">
+            <td th:text="${option.text}"></td>
+            <td th:text="${option.votes}"></td>
+        </tr>
+    </tbody>
+</table>
+
+<a th:href="@{/polls}">Back to Polls</a>
+</body>
+</html>
