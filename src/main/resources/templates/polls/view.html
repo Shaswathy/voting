@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${poll.question}"></title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="section-title" th:text="${poll.question}">Poll Question</h1>
+
+        <div th:if="${hasVoted}" class="alert alert-success">
+            ✅ You have already voted on this poll!
+            <a th:href="@{/polls/{pollId}/results(pollId=${poll.id})}" class="btn btn-info">View Results</a>
+        </div>
+        
+        <div th:unless="${hasVoted}">
+            <p>Select an option to cast your vote:</p>
+
+            <form th:action="@{/polls/{pollId}/vote(pollId=${poll.id})}" th:object="${voteRequest}" method="post" class="vote-form">
+                
+                <div th:each="option : ${poll.options}" class="radio-option">
+                    <input type="radio" 
+                           th:id="'option' + ${option.id}" 
+                           name="selectedOptionId" 
+                           th:value="${option.id}" 
+                           required>
+                    <label th:for="'option' + ${option.id}" th:text="${option.text}">Option Text</label>
+                </div>
+
+                <input type="hidden" th:field="*{pollId}">
+                
+                <button type="submit" class="btn btn-primary">Submit Vote</button>
+            </form>
+        </div>
+
+        <hr>
+        
+        <a th:href="@{/polls}" class="btn btn-secondary">← Back to Poll List</a>
+        
+    </div>
+</body>
+</html>

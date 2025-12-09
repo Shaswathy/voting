@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${poll.question} + ' Results'"></title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="section-title">Results for: <span th:text="${poll.question}">Poll Question</span></h1>
+
+        <div class="results-container">
+            <div th:each="option : ${poll.options}" class="result-bar-item">
+                <div class="option-name" th:text="${option.text}">Option Name</div>
+                
+                <div class="vote-count">
+                    Votes: 
+                    <span th:text="${option.votes?.size()} ?: 0">0</span>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+        
+        <a th:href="@{/polls}" class="btn btn-secondary">← Back to Poll List</a>
+        
+        <a th:href="@{/polls/{pollId}(pollId=${poll.id})}" class="btn btn-info">View Poll Page</a>
+        
+    </div>
+</body>
+</html>

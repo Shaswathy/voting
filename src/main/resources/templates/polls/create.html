@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Poll</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <div class="container">
+        <h2>Create a New Poll</h2>
+
+        <form th:action="@{/polls/create}" th:object="${pollRequest}" method="post">
+            
+            <label for="question">Poll Question:</label>
+            <input type="text" id="question" th:field="*{question}" required>
+            <span th:if="${#fields.hasErrors('question')}" 
+                  th:errors="*{question}" 
+                  class="error-message">Question Error</span>
+
+            <h3>Options:</h3>
+            
+            <div th:each="option, stat : *{optionRequests}" class="option-group">
+                <label th:for="${'optionText' + stat.index}">Option #<span th:text="${stat.index + 1}"></span>:</label>
+                
+                <input type="text" 
+                       th:id="${'optionText' + stat.index}" 
+                       th:field="*{optionRequests[__${stat.index}__].text}" 
+                       required>
+                       
+                <span th:if="${#fields.hasErrors('optionRequests[' + stat.index + '].text')}" 
+                      th:errors="*{optionRequests[__${stat.index}__].text}" 
+                      class="error-message">Option Text Error</span>
+            </div>
+            
+            <button type="submit">Create Poll</button>
+        </form>
+    </div>
+</body>
+</html>

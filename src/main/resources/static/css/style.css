@@ -1,0 +1,134 @@
+
+
+/* General Styling for the entire app */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7f6; /* Light gray background */
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Main content wrapper */
+.container {
+    width: 90%;
+    max-width: 800px;
+    background-color: #fff;
+    padding: 20px 40px;
+    margin-top: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Header and Typography */
+h2 {
+    color: #007bff; /* Blue heading */
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+}
+
+/* Links and Buttons */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button[type="submit"], .button-link {
+    background-color: #28a745; /* Green submit button */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: inline-block;
+}
+
+button[type="submit"]:hover, .button-link:hover {
+    background-color: #218838;
+}
+
+/* Form Elements */
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; 
+}
+
+/* Authentication Container Styling (for Login/Register pages) */
+.auth-container {
+    width: 90%;
+    max-width: 400px;
+    background-color: #fff;
+    padding: 30px;
+    margin-top: 50px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.auth-container h2 {
+    text-align: center;
+    color: #007bff;
+    margin-bottom: 30px;
+}
+
+/* Poll Creation Specifics (for options) */
+.option-group {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+}
+
+.option-group label {
+    font-weight: normal; 
+    margin-top: 0;
+}
+
+/* Validation Error Styling */
+.error-message {
+    color: #dc3545; /* Red color for errors */
+    font-size: 0.9em;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* Results Page Specific Styling (for the bar chart) */
+.bar-container {
+    width: 100%;
+    background-color: #ddd;
+    border-radius: 4px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.bar {
+    text-align: right;
+    padding: 5px 10px;
+    color: white;
+    background-color: #38c172; /* Result bar color */
+    border-radius: 4px;
+    min-width: 50px;
+    white-space: nowrap; /* Prevents text wrap */
+    overflow: hidden;
+}

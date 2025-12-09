@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" 
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Polls List</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="main-title">Welcome to the Polling App!</h1>
+        
+        <p class="user-status">You are logged in as: <span sec:authentication="name">User</span></p>
+        <form th:action="@{/logout}" method="post" style="display:inline;">
+            <button type="submit" class="btn btn-secondary">Logout</button>
+        </form>
+
+        <hr>
+
+        <div th:if="${param.accessDenied}" class="alert alert-danger">
+            You do not have permission to create polls.
+        </div>
+        
+        <div sec:authorize="hasRole('ROLE_ADMIN')" class="admin-link">
+            <a th:href="@{/polls/create}" class="btn btn-primary">Create a New Poll (ADMIN Only)</a>
+        </div>
+        
+        <h2 class="section-title">Available Polls</h2>
+
+        <div th:if="${polls.empty}" class="no-data">
+            No polls have been created yet.
+        </div>
+        
+        <ul class="poll-list">
+            <li th:each="poll : ${polls}">
+                <a th:href="@{/polls/{pollId}(pollId=${poll.id})}" th:text="${poll.question}">Poll Question</a>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
