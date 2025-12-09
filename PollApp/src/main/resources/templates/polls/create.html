@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create Poll - PollApp</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <script>
+        function addOptionField() {
+            const optionsDiv = document.getElementById('options');
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.name = 'options';
+            input.required = true;
+            optionsDiv.appendChild(input);
+            optionsDiv.appendChild(document.createElement('br'));
+        }
+    </script>
+</head>
+<body>
+<h2>Create Poll</h2>
+
+<div th:if="${error}" style="color:red;">
+    <p th:text="${error}"></p>
+</div>
+
+<form th:action="@{/polls/save}" method="post" th:object="${pollRequest}">
+    <label>Question:</label>
+    <input type="text" th:field="*{question}" required />
+    <br/>
+
+    <label>Options (at least 2):</label>
+    <div id="options">
+        <input type="text" name="options" required />
+        <br/>
+        <input type="text" name="options" required />
+        <br/>
+    </div>
+    <button type="button" onclick="addOptionField()">Add Option</button>
+    <br/>
+
+    <label>Expiry Date (optional):</label>
+    <input type="datetime-local" th:field="*{expiryDate}" />
+    <br/>
+
+    <button type="submit">Create</button>
+</form>
+
+<a th:href="@{/polls}">Back to Polls</a>
+</body>
+</html>
